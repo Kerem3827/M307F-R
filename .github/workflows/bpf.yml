@@ -29,7 +29,7 @@ jobs:
 
       - name: Merge phoenix/5.10-bpf into main
         run: |
-          git merge --no-ff phoenix/5.10-bpf -m "Automated merge from PhoenixKernel 5.10-bpf"
+         git merge --no-ff phoenix/5.10-bpf --allow-unrelated-histories -m "Automated merge from PhoenixKernel 5.10-bpf"
 
       - name: Push changes to main
         uses: ad-m/github-push-action@v0.8.0
