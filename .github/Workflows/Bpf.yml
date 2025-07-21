@@ -1,0 +1,37 @@
+name: Merge PhoenixKernel 5.10-bpf into main
+
+on:
+  workflow_dispatch:  # Elle çalıştırmak için
+  schedule:           # Her gün saat 03:00'te otomatik
+    - cron: '0 3 * * *'
+
+jobs:
+  merge-bpf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout your repository (main branch)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Add PhoenixKernel remote
+        run: |
+          git remote add phoenix https://github.com/cat658011/PhoenixKernel.git
+          git fetch phoenix 5.10-bpf
+
+      - name: Merge phoenix/5.10-bpf into main
+        run: |
+          git merge --no-ff phoenix/5.10-bpf -m "Automated merge from PhoenixKernel 5.10-bpf"
+
+      - name: Push changes to main
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
