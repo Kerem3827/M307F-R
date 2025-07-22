@@ -20,9 +20,9 @@ jobs:
       run: chmod +x update.sh
 
     - name: 🔄 Pull and merge 4.14.190 from linux-stable
-      run: ./update.sh -m -v 4.14.120
+      run: ./update.sh -c -v 4.14.114
 
     - name: ✅ Commit updated kernel tree
       run: |
         git commit -am "Merge linux-stable 4.14.120"
-        git push orign 4.14.120
+        git push orign 4.14.114
