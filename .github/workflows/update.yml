@@ -20,7 +20,7 @@ jobs:
       run: chmod +x update.sh
 
     - name: 🔄 Pull and merge 4.14.120 from linux-stable
-      run: ./update.sh -c -v 4.14.120
+      run: ./update.sh -m -v 4.14.120
 
     - name: ✅ Commit updated kernel tree
       run: |
